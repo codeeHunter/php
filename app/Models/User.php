@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class User extends Model
 {
     use HasFactory;
+    protected $table = "users";
+    protected $guarded = [];
+    public function feedbacks()
+    {
+        return $this->hasMany(
+            Feedback::class,
+            "feedback_id",
+            "id"
+        );
+    }
 }

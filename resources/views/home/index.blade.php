@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
     <div class="">
-        Hello World!
+        <input type="text">
     </div>
 @endsection
