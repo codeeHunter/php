@@ -2,6 +2,5 @@
 @section('content')
     <div class="">
         Hello World!
-        gdsa
     </div>
 @endsection
