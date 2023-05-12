@@ -14,9 +14,7 @@ class City extends Model
     public function feedbacks()
     {
         return $this->hasMany(
-            Feedback::class,
-            "feedback_id",
-            "id"
+            'App\Models\Feedback'
         );
     }
 }

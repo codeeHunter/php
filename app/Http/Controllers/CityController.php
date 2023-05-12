@@ -27,12 +27,12 @@ class CityController extends Controller
         $city = isset($locationData['city']) ? $locationData['city'] : '';
         $isShow = false;
 
-        if (session('city') == 0) {
-            if (!$city) {
-                // если город не определен, выводим список всех городов из БД
-                // выводим список городов на страницу
+        if (session('city') > 0) {
+            if ($city) {
+                $cityBD = City::all();
+
                 foreach ($cities as $city) {
-                    dump($city->name);
+                    $cities->add($city->name);
                 }
             } else {
                 // если город определен, сохраняем его в сессии
@@ -43,22 +43,22 @@ class CityController extends Controller
             }
         }
 
+
         if (session('city') && session()->has('expiration_time') && now() < session()->get('expiration_time')) {
             $city = session('city');
-            $city = City::where('name', $city)->first();
-            $cityId = $city->id;
-            $feedbacks = Feedback::all();
-
-            if (!Feedback::where('city_id', $cityId)->get()) {
-                $feedbacks = Feedback::where('city_id', $cityId)->get();
-            } else {
-                $feedbacks = [];
+            $city = City::where('name', $city)->first() > 0;
+            if ($city) {
+                $city = City::where('name', $city)->first();
+                $cityId = $city->id;
             }
 
+            $feedbacks = Feedback::all();
             return view('home.index', compact("cities", "feedbacks", "isShow"));
         }
 
         $feedbacks = Feedback::all();
+
+
 
         return view('home.index', compact("cities", "feedbacks", "isShow"));
     }
