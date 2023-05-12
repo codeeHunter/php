@@ -20,7 +20,9 @@ Route::get("/", [CityController::class, "index"])->name("home.index");
 Route::get("/user/create", [UserController::class, "create"])->name("user.create");
 Route::post("/user", [UserController::class, "store"])->name("user.store");
 
-
-Route::get("/feedbacks/{city}", [FeedbackController::class, "index"])->name("feedbacks.index");
 Route::get("/feedback/create", [FeedbackController::class, "create"])->name("feedback.create");
+Route::get("/feedbacks/{city}", [FeedbackController::class, "index"])->name("feedbacks.index");
+Route::delete("/feedbacks/{city}/{feedback}", [FeedbackController::class, "destroy"])->name("feedback.delete");
+Route::get("/feedbacks/{city}/{feedback}", [FeedbackController::class, "edit"])->name("feedback.show");
 Route::post("/feedback", [FeedbackController::class, "store"])->name("feedback.store");
+Route::patch("/feedbacks/{city}/{feedback}", [FeedbackController::class, "update"])->name("feedback.update");

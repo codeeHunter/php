@@ -51,4 +51,31 @@ class FeedbackController extends Controller
 
         return redirect()->route("home.index");
     }
+
+
+    public function edit(City $city, Feedback $feedback)
+    {
+        return view("feedback.show", compact("feedback", "city"));
+    }
+
+    public function update(City $city, Feedback $feedback)
+    {
+        $data = request()->validate([
+            "title" => "string",
+            "text" => "string",
+            "img" => "string",
+            "rating" => "",
+        ]);
+
+        $feedback->update($data);
+
+        return redirect()->route("feedbacks.index", $city);
+    }
+
+    public function destroy(City $city, Feedback $feedback)
+    {
+        $feedback->delete();
+
+        return redirect()->route("feedbacks.index", $city);
+    }
 }
