@@ -18,7 +18,7 @@ return new class extends Migration {
             $table->text("text");
             $table->text("img");
             $table->integer("rating");
-            $table->date('date_create');
+            $table->timestamps();
 
             $table->bigInteger("city_id")->nullable();
             $table->bigInteger("author_id")->nullable();

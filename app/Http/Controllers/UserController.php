@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\City;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -15,6 +16,8 @@ class UserController extends Controller
 
     public function store()
     {
+        $cities = City::all();
+
         $data = request()->validate(
             [
                 "fio" => "",
@@ -25,6 +28,6 @@ class UserController extends Controller
         );
 
         User::create($data);
-        return redirect()->route("home.index");
+        return redirect()->route("home.index", compact("cities"));
     }
 }

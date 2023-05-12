@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CityController;
+use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,3 +19,6 @@ use Illuminate\Support\Facades\Route;
 Route::get("/", [CityController::class, "index"])->name("home.index");
 Route::get("/user/create", [UserController::class, "create"])->name("user.create");
 Route::post("/user", [UserController::class, "store"])->name("user.store");
+
+Route::get("/feedback/create", [FeedbackController::class, "create"])->name("feedback.create");
+Route::post("/feedback", [FeedbackController::class, "store"])->name("feedback.store");

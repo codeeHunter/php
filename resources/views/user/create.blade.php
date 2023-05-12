@@ -12,8 +12,8 @@
                 <input type="text" class="form-control" name="phone" placeholder="8 (666) 666-55-44"
                     aria-label="8 (666) 666-55-44">
             </div>
-            <div class="col">
-                <button type="submit" class="btn btn-primary">Create</button>
+            <div class="col my-50">
+                <button type="submit" class="btn btn-primary ">Зарегистрироваться</button>
             </div>
         </form>
     </div>
