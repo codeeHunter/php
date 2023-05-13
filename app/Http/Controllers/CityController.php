@@ -53,13 +53,13 @@ class CityController extends Controller
             }
 
             $feedbacks = Feedback::all();
-            return view('home.index', compact("cities", "feedbacks", "isShow"));
+            return view('cities.index', compact("cities", "feedbacks", "isShow"));
         }
 
         $feedbacks = Feedback::all();
 
 
 
-        return view('home.index', compact("cities", "feedbacks", "isShow"));
+        return view('cities.index', compact("cities", "feedbacks", "isShow"));
     }
 }

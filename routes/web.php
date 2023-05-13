@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\FeedbackController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,8 +16,11 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Auth::routes(["verify" => true]);
 
-Route::get("/", [CityController::class, "index"])->name("home.index");
+Route::get("/", [HomeController::class, 'index'])->name("home.index");
+
+Route::get("/home", [CityController::class, "index"])->name("cities.index");
 Route::get("/user/create", [UserController::class, "create"])->name("user.create");
 Route::post("/user", [UserController::class, "store"])->name("user.store");
 

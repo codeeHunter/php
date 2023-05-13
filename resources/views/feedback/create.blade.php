@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <div class="my-3 text-center" >
+    <div class="my-3 text-center">
         <h2>Создать отзыв</h2>
     </div>
     <div class="d-flex justify-content-center">
@@ -17,9 +17,12 @@
                     <input type="file" class="form-control my-3" name="img" placeholder="Загрузите ваше фото">
                     <input type="text"class="form-control my-3" name="city" placeholder="Напишите город">
                 </div>
-
                 <div class="col">
-                    <button type="submit" class="btn btn-primary">Создать</button>
+                    @if (auth()->check())
+                        <button type="submit" class="btn btn-primary">Создать</button>
+                    @else
+                        <a class="btn btn-primary" href="{{ route('login') }}">Авторизуйтесь</a>
+                    @endif
                 </div>
             </form>
         </div>
