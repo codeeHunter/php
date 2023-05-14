@@ -12,12 +12,15 @@ class FeedbackController extends Controller
     public function index(City $city)
     {
         $feedbacks = Feedback::where("city_id", $city->id)->get();
+
         return view("feedback.index", compact("feedbacks", "city"));
     }
 
     public function create()
     {
-        return view("feedback.create");
+        $cities = City::all();
+
+        return view("feedback.create", compact("cities"));
     }
 
     public function store(Request $request)
@@ -30,9 +33,10 @@ class FeedbackController extends Controller
 
         $cityExists = City::where('name', $request->input('city'))->count() > 0;
 
+
         if (!$cityExists) {
             City::create(["name" => $request->input('city')]);
-        }
+        } 
 
         $city = City::where('name', $request->input('city'))->first();
 
@@ -45,11 +49,11 @@ class FeedbackController extends Controller
             $feedback->img = $filename;
         }
 
-
-
         $feedback->save();
 
-        return redirect()->route("home.index");
+        $feedbacks = Feedback::all();
+
+        return view("feedback.index", compact('city', 'feedbacks'));
     }
 
 
