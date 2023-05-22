@@ -29,12 +29,10 @@ class CityController extends Controller
 
         if (session('city') > 0) {
             if ($city) {
-                $cityBD = City::all();
-
                 foreach ($cities as $city) {
                     $cities->add($city->name);
                 }
-            } else {
+            } else { 
                 // если город определен, сохраняем его в сессии
                 session(['city' => $city]);
                 // выводим страницу с отзывами для выбранного города
@@ -45,11 +43,10 @@ class CityController extends Controller
 
 
         if (session('city') && session()->has('expiration_time') && now() < session()->get('expiration_time')) {
-            $city = session('city');
-            $city = City::where('name', $city)->first() > 0;
+            $cityName = session('city');
+            $city = City::where('name', $cityName)->first() > 0;
             if ($city) {
                 $city = City::where('name', $city)->first();
-                $cityId = $city->id;
             }
 
             $feedbacks = Feedback::all();

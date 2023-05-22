@@ -39,6 +39,13 @@ return new class extends Migration {
      */
     public function down()
     {
+
+        Schema::table('feedback', function (Blueprint $table) {
+            $table->dropForeign('city_feedback_fk');
+            $table->dropForeign('author_feedback_fk');
+        });
+
+
         Schema::dropIfExists('feedback');
     }
 };
